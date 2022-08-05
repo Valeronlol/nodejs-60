@@ -1,0 +1,42 @@
+body {
+    position: relative;
+}
+
+#welcome, #chat {
+    width: 50vw;
+    height: 50vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background-color: #8378af;
+}
+
+#welcome-form {
+    display: flex;
+    justify-content: space-around;
+}
+
+#chat {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#chat-message-form {
+    display: flex;
+    justify-content: space-around;
+}
+
+#container-id {
+    text-align: center;
+    color: darkblue;
+}
+
+.message {
+    background-color: #89a9a9;
+    margin: 6px 4px;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: default;
+}

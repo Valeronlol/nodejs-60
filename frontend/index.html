@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TMS socket io example</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="socket.io.min.js"></script>
+    <script src="main.js"></script>
+
+    <h2 id="container-id"></h2>
+
+    <div id="welcome">
+        <h3>Добро пожаловать, укажите ваше имя:</h3>
+
+        <form id="welcome-form">
+            <input type="text" name="username" id="welcome-form-username">
+            <input type="submit" value="Подтвердить">
+        </form>
+    </div>
+
+    <div id="chat">
+        <div id="messages-container"></div>
+        <form id="chat-message-form">
+            <input type="text" name="message" id="chat-message">
+            <input type="submit" value="Отправить сообщение">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  tms_webserver:
+    build:
+      context: .
+      dockerfile: docker/tms_webserver.Dockerfile
+    ports:
+      - "3000:80"
+
+  tms_websocket_server_1:
+    build:
+      context: .
+      dockerfile: docker/websocket_server.Dockerfile
+    environment:
+      PORT: 3000
+      CONTAINER_ID: 'TMS WEBSOCKET SERVER ONE'
+
+  tms_websocket_server_2:
+    build:
+      context: .
+      dockerfile: docker/websocket_server.Dockerfile
+    environment:
+      PORT: 3000
+      CONTAINER_ID: 'TMS WEBSOCKET SERVER TWO'
+
+  tms_websocket_server_3:
+    build:
+      context: .
+      dockerfile: docker/websocket_server.Dockerfile
+    environment:
+      PORT: 3000
+      CONTAINER_ID: 'TMS WEBSOCKET SERVER THREE'
