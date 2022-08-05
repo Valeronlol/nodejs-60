@@ -1,6 +1,9 @@
 version: '3.9'
 
 services:
+  tms_chat_broker:
+    image: redis:7-alpine
+
   tms_webserver:
     build:
       context: .
@@ -15,6 +18,10 @@ services:
     environment:
       PORT: 3000
       CONTAINER_ID: 'TMS WEBSOCKET SERVER ONE'
+      REDIS_HOST: tms_chat_broker
+      REDIS_PORT: 6379
+    depends_on:
+      - tms_chat_broker
 
   tms_websocket_server_2:
     build:
@@ -23,6 +30,10 @@ services:
     environment:
       PORT: 3000
       CONTAINER_ID: 'TMS WEBSOCKET SERVER TWO'
+      REDIS_HOST: tms_chat_broker
+      REDIS_PORT: 6379
+    depends_on:
+      - tms_chat_broker
 
   tms_websocket_server_3:
     build:
@@ -31,3 +42,7 @@ services:
     environment:
       PORT: 3000
       CONTAINER_ID: 'TMS WEBSOCKET SERVER THREE'
+      REDIS_HOST: tms_chat_broker
+      REDIS_PORT: 6379
+    depends_on:
+      - tms_chat_broker

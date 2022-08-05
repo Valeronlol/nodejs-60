@@ -1,8 +1,13 @@
 const { Server } = require('socket.io')
+const { createAdapter } = require('@socket.io/redis-adapter')
+const { createClient } = require('redis')
 
 const io = new Server({
   path: '/websocket'
 })
+
+const pubClient = createClient({ url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}` })
+const subClient = pubClient.duplicate()
 
 const port = parseInt(process.env.PORT) || 3000
 
@@ -22,5 +27,10 @@ io.on('connect', (socket) => {
   })
 })
 
-io.listen(port)
-console.log(`Websocket server listening on port ${port}`)
+async function main () {
+  await Promise.all([pubClient.connect(), subClient.connect()])
+  io.adapter(createAdapter(pubClient, subClient))
+  io.listen(port)
+  console.log(`Websocket server ${process.env.CONTAINER_ID} listening on port ${port}`)
+}
+main()
